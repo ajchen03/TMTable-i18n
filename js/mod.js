@@ -1,15 +1,16 @@
 let modInfo = {
-	name: "The ??? Tree",
-	nameEN: "The ??? Tree",// When you're using "otherLanguageMod", this will show as the second language
+	name: "The ??? Table",
+	nameEN: "The ??? Table",// When you open the otherLanguageMod, this is the second language
 	id: "mymod2",
 	author: "nobody",
 	pointsName: "points",
 	modFiles: ["layers.js", "tree.js"],
-	otherLanguageMod: true,// 开启时玩家会在开始游戏时询问并选择语言
-	languageMod: true,// 关闭otherLanguageMod时使用,默认为 true->英文 false->中文
 
-	discordName: "",
-	discordLink: "",
+	otherLanguageMod: false,// When on, it will ask the player to choose a language at the beginning of the game
+	languageMod: false,// Use when otherLanguageMod is off, default are true -> English, false -> Chinese
+
+	forceOneTab: false,// Enable Single-Tab Mode ( This feature doen't work fluently as you'd imagine, it's made for expert, and if you open it, it will show 'tree-tab' page everytime you refresh the page ( ps: you can change that at save.js, line 234 ) )
+
 	initialStartPoints: new Decimal (10), // Used for hard resets and new players
 	offlineLimit: 1,  // In hours
 
@@ -35,25 +36,27 @@ let VERSION = {
 	name: "Literally nothing",
 }
 
-let changelog = `
-	<br><br><br><h1>更新日志:</h1><br>(不存在<span style='color: red'><s>剧透警告</s></span>)<br><br>
-	<span style="font-size: 17px;">
-		<h3><s>你应该自己写这个</s></h3><br><br>
-		<h3>v0.0 - 史无前例的改动</h3><br>
-			- 开发了 The Modding Table, 这何尝不是一种TMT<br>
-		<br><br>
-`
+function changelog(){
+	return (options.ch || modInfo.languageMod==false)?`
+		<br><br><br><h1>更新日志:</h1><br>(不存在<span style='color: red'><s>剧透警告</s></span>)<br><br>
+		<span style="font-size: 17px;">
+			<h3><s>不,你应该自己写这个</s></h3><br><br>
+			<h3>v3.0 - 史无前例的改动</h3><br>
+				- 开发了 The Modding Table, 这何尝不是一种TMT<br>
+			<br><br>
+		`:`
+		<br><br><br><h1>ChangeLog:</h1><br>(No<span style='color: red'><s> Spoiler Warning!</s></span>)<br><br>
+		<span style="font-size: 17px;">
+			<h3><s>NO, YOU SHOULD WRITE THIS YOURSELF</s></h3><br><br>
+			<h3>v3.0 - Unprecedented changes</h3><br>
+				- Developed The Modding Table, Which, you could say, is another form of TMT<br>
+			<br><br>
+	`
+} 
 
-// When you open the otherLanguageMod, this is the second language
-let changelogEN = `
-	<br><br><br><h1>Changelog:</h1><br>(不存在<span style='color: red'><s>剧透警告</s></span>)<br><br>
-	<span style="font-size: 17px;">
-		<h3>v0.0 - 史无前例的改动</h3><br>
-			- 开发了 The Modding Table, 这何尝不是一种TMT<br>
-		<br><br>
-`
-
-let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
+function winText(){
+	return (options.ch || modInfo.languageMod==false)?`你暂时完成了游戏!`:`Congratulations! You have reached the end and beaten this game, but for now...`
+}
 
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
 // (The ones here are examples, all official functions are already taken care of)
@@ -84,14 +87,14 @@ function addedPlayerData() { return {
 // Display extra things at the top of the page
 var displayThings = [
 	function() {
-		if(options.ch==undefined && modInfo.otherLanguageMod==false){return '<big><br>You should choose your language first<br>你需要先选择语言</big>'}
-		return '<div class="res">'+displayThingsRes()+'</div><br><br><div class="vl2"></div></span>'
+		if(options.ch==undefined && modInfo.otherLanguageMod==true){return '<big><br>You should choose your language first<br>你需要先选择语言</big>'}
+		return '<div class="res">'+displayThingsRes()+'</div><br><div class="vl2"></div></span>'
 	}
 ]
 
-// 你可以在此处写入内容已左上角便捷显示
+// You can write stuff here to display them on top-left corner easily
 function displayThingsRes(){
-	return ''
+	return 'Points: '+format(player.points)+' | '
 }
 
 // Determines when the game "ends"
@@ -102,18 +105,19 @@ function isEndgame() {
 //
 function getPointsDisplay(){
 	let a = ''
-	if(player.devSpeed && player.devSpeed != 1){
+	if(player.devSpeed && player.devSpeed!=1){
 		a += options.ch ? '<br>时间加速: '+format(player.devSpeed)+'x' : '<br>Dev Speed: '+format(player.devSpeed)+'x'
 	}
-	if(player.offTime !== undefined){
+	if(player.offTime!==undefined){
 		a += options.ch ? '<br>离线加速剩余时间: '+formatTime(player.offTime.remain) : '<br>Offline Time: '+formatTime(player.offTime.remain)
 	}
 	a += '<br>'
-	if(options.ch !== undefined){
-		a += `<span class="overlayThing">${(options.ch?"你有":"You have")} <h2  class="overlayThing" id="points"> ${format(player.points)}</h2> ${modInfo.pointsName}</span>`
+	if(!(options.ch==undefined && modInfo.otherLanguageMod==true)){
+		a += `<span class="overlayThing">${((options.ch || modInfo.languageMod==false)?"你有":"You have")} <h2  class="overlayThing" id="points"> ${format(player.points)}</h2> ${modInfo.pointsName}</span>`
 		if(canGenPoints()){
 			a += `<br><span class="overlayThing">(`+(tmp.other.oompsMag != 0 ? format(tmp.other.oomps) + " OOM" + (tmp.other.oompsMag < 0 ? "^OOM" : tmp.other.oompsMag > 1 ? "^" + tmp.other.oompsMag : "") + "s" : formatSmall(getPointGen()))+`/sec)</span>`
 		}
+		a += `<div style="margin-top: 3px"></div>`
 	}
 	a += tmp.displayThings
 	a += '<br><br>'
