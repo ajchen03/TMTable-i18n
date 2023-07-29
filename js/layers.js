@@ -2,7 +2,7 @@ addLayer("1layer small", {// Add a * small* to generate a slightly different lay
     name: "sideLayer1",
     position: -1,
     row: 0,
-    symbol() {return (options.ch || modInfo.languageMod==false) ? '↓ 层级 1 ↓' : '↓ layer 1 ↓'},
+    symbol() {return text('changelog')},
     symbolEN() {return (options.ch || modInfo.languageMod==false) ? '↓ 层级 1 ↓' : '↓ layer 1 ↓'},
     nodeStyle: {"font-size": "15px", "text-center": "center", "height": "30px"},
     startData() { return {

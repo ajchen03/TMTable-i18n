@@ -227,6 +227,8 @@ var systemComponents = {
 			<tr>
 				<td><button class="opt" v-if="modInfo.otherLanguageMod==true" onclick="
                 options.ch=!options.ch;
+				if(options.ch){setLang('zh_CN')};
+				if(!options.ch){setLang('en_US')};
                 needsCanvasUpdate = true; document.title = ((options.ch || modInfo.languageMod==false)? modInfo.name : modInfo.nameEN);
                 VERSION.withName = VERSION.withoutName + (VERSION.name ? ': ' + ((options.ch || modInfo.languageMod==false)? VERSION.name :VERSION.nameEN) : '');
 				setupModInfo();

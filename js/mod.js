@@ -6,7 +6,7 @@ let modInfo = {
 	pointsName: "points",
 	modFiles: ["layers.js", "tree.js"],
 
-	otherLanguageMod: false,// When on, it will ask the player to choose a language at the beginning of the game
+	otherLanguageMod: true,// When on, it will ask the player to choose a language at the beginning of the game
 	languageMod: false,// Use when otherLanguageMod is off, default are true -> English, false -> Chinese
 
 	forceOneTab: false,// Enable Single-Tab Mode ( This feature doen't work fluently as you'd imagine, it's made for expert, and if you open it, it will show 'tree-tab' page everytime you refresh the page ( ps: you can change that at save.js, line 234 ) )
