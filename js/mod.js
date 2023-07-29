@@ -14,7 +14,7 @@ let modInfo = {
 	initialStartPoints: new Decimal (10), // Used for hard resets and new players
 	offlineLimit: 1,  // In hours
 
-	langs: ['zh_CN']
+	langs: ['zh_CN','en_US']
 }
 
 var colors = {

@@ -2,9 +2,10 @@ let langName = "简体中文"
 
 let lang = {
     'changelog': '好像没啥 change',
-    'system': {
-        '123': '456'
-    }
+    'systemComponent': {
+        'otherTab':'↓ 其他页面 ↓',
+        'setting':'设置',
+    },
 }
 
 export { langName, lang }
