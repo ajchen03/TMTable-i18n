@@ -1,23 +1,16 @@
-# The-Modding-Table
-by Shinwmste
+# The-Modding-Table i18n fork
+by ajchen
 
-An incremental game engine based on The Modding Tree. It still requires programming knowledge, but it's mostly pretty easy things and copy/paste.
+# ALRIGHT CHECK THIS OUT
+You need to open this AS A SERVER to run! (I know, it's weird, but it's how it works)
+For VSCode, you can use the five Server extension to do this.
+For other IDEs... welp, you're on your own. GOOGLE HELP
 
-[Doc](https://github.com/shenmi124/The-Modding-Table/tree/main/docs) <i>has not yet.</i>(lol)
+# How to use this
+Mostly just as you do a normal tree, but replace every strings with ```text()```.
+You can get how this work by looking at [this](/js/langs/en_US.js) file.
+You still need to write a welcome page like [this](/js/lag.js) file to make a OoBE "language selection".
 
-Thanks<s>(::thinks::)</s>:
-(Original Author)
-<br>
-[Acamaeda](https://github.com/Acamaeda)
-<br>
-<br>
-(Team Member)
-<br>
-[QwQe308](https://github.com/QwQe308)
-<br>
-<br>
-(Helper)
-<br>
-[3^3](https://github.com/factorXXX)
-<br>
-Anonymous * 2 ( not there name ) ( “( not there name )” is not there name ) ( “( “( not there name )” is not there name )” is not there either ) <s>( ( “( “( not there name )” is not there name )” is not there either ) 🤔 )</s>
+If you in counter any issue, ping @ajchen on the discord server.
+
+Go check [their own readme](https://github.com/shenmi124/The-Modding-Table) for more info i guess.

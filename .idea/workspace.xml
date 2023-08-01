@@ -6,14 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0a42c57a-07b7-409d-b5f9-62e543c357dd" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/components.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/components.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/lag.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/lag.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/langs/en_US.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/langs/en_US.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/langs/zh_CN.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/langs/zh_CN.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/mod.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/mod.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/technical/preLoader.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/technical/preLoader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/technical/systemComponents.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/technical/systemComponents.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,19 +28,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/TMTable-i18n/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
@@ -72,6 +66,7 @@
       <workItem from="1690886098481" duration="2125000" />
       <workItem from="1690888543493" duration="4437000" />
       <workItem from="1690893016269" duration="722000" />
+      <workItem from="1690893908038" duration="532000" />
     </task>
     <servers />
   </component>
