@@ -139,15 +139,14 @@ function loadVue() {
 		template: `
 		<div v-if="tmp[layer].challenges && tmp[layer].challenges[data]!== undefined && tmp[layer].challenges[data].unlocked && !(options.hideChallenges && maxedChallenge(layer, [data]) && !inChallenge(layer, [data]))"
 			v-bind:class="['challenge', challengeStyle(layer, data), player[layer].activeChallenge === data ? 'resetNotify' : '']" v-bind:style="tmp[layer].challenges[data].style">
-			<br><h3 v-html="(options.ch || modInfo.languageMod==false)?tmp[layer].challenges[data].name:tmp[layer].challenges[data].nameEN"></h3><br><br>
+			<br><h3 v-html="tmp[layer].challenges[data].name"></h3><br><br>
 			<button v-bind:class="{ longUpg: true, can: true, [layer]: true }" v-bind:style="{'background-color': tmp[layer].color}" v-on:click="startChallenge(layer, data)">{{challengeButtonText(layer, data)}}</button><br><br>
 			<span v-if="layers[layer].challenges[data].fullDisplay" v-html="run(layers[layer].challenges[data].fullDisplay, layers[layer].challenges[data])"></span>
 			<span v-else>
-				<span v-if="(options.ch || modInfo.languageMod==false)" v-html="tmp[layer].challenges[data].challengeDescription"></span>
-				<span v-else v-html="tmp[layer].challenges[data].challengeDescriptionEN"></span>
-				{{(options.ch || modInfo.languageMod==false)?'目标':'Goal'}}:  <span v-if="tmp[layer].challenges[data].goalDescription" v-html="tmp[layer].challenges[data].goalDescription"></span><span v-else>{{format(tmp[layer].challenges[data].goal)}} {{tmp[layer].challenges[data].currencyDisplayName ? tmp[layer].challenges[data].currencyDisplayName : modInfo.pointsName}}</span><br>
-				{{(options.ch || modInfo.languageMod==false)?'奖励':'Reward'}}: <span v-html="(options.ch || modInfo.languageMod==false)?tmp[layer].challenges[data].rewardDescription:tmp[layer].challenges[data].rewardDescriptionEN"></span><br>
-				<span v-if="layers[layer].challenges[data].rewardDisplay!==undefined">{{(options.ch || modInfo.languageMod==false)?'当前效果':'Currently'}}: <span v-html="(tmp[layer].challenges[data].rewardDisplay) ? (run(layers[layer].challenges[data].rewardDisplay, layers[layer].challenges[data])) : format(tmp[layer].challenges[data].rewardEffect)"></span></span>
+				<span v-html="tmp[layer].challenges[data].challengeDescriptionEN"></span>
+				{{text('systemComponent.challenge.goal')}}:  <span v-if="tmp[layer].challenges[data].goalDescription" v-html="tmp[layer].challenges[data].goalDescription"></span><span v-else>{{format(tmp[layer].challenges[data].goal)}} {{tmp[layer].challenges[data].currencyDisplayName ? tmp[layer].challenges[data].currencyDisplayName : modInfo.pointsName}}</span><br>
+				{{text('systemComponent.challenge.reward')}}: <span v-html="tmp[layer].challenges[data].rewardDescription></span><br>
+				<span v-if="layers[layer].challenges[data].rewardDisplay!==undefined">{{text('systemComponent.challenge.reward')}}: <span v-html="(tmp[layer].challenges[data].rewardDisplay) ? (run(layers[layer].challenges[data].rewardDisplay, layers[layer].challenges[data])) : format(tmp[layer].challenges[data].rewardEffect)"></span></span>
 			</span>
 			<node-mark :layer='layer' :data='tmp[layer].challenges[data].marked' :offset="20" :scale="1.5"></node-mark></span>
 
@@ -177,11 +176,10 @@ function loadVue() {
 			v-bind:style="[((!hasUpgrade(layer, data) && canAffordUpgrade(layer, data)) ? {'background-color': tmp[layer].color} : {}), tmp[layer].upgrades[data].style]">
 			<span v-if="layers[layer].upgrades[data].fullDisplay" v-html="run(layers[layer].upgrades[data].fullDisplay, layers[layer].upgrades[data])"></span>
 			<span v-else>
-				<span v-if= "tmp[layer].upgrades[data].title && (options.ch || modInfo.languageMod==false)"><h3 v-html="tmp[layer].upgrades[data].title"></h3><br></span>
-				<span v-if= "tmp[layer].upgrades[data].title && !(options.ch || modInfo.languageMod==false)"><h3 v-html="tmp[layer].upgrades[data].titleEN"></h3><br></span>
-				<span v-if= "(options.ch || modInfo.languageMod==false)" v-html="tmp[layer].upgrades[data].description"></span><span v-else v-html="tmp[layer].upgrades[data].descriptionEN"></span>
-				<span v-if="layers[layer].upgrades[data].effectDisplay"><br>{{(options.ch || modInfo.languageMod==false)?'当前效果':'Currently'}}: <span v-html="run((options.ch || modInfo.languageMod==false)?layers[layer].upgrades[data].effectDisplay:(layers[layer].upgrades[data].effectDisplayEN?layers[layer].upgrades[data].effectDisplayEN:layers[layer].upgrades[data].effectDisplay), layers[layer].upgrades[data])"></span></span>
-				<br><br>{{(options.ch || modInfo.languageMod==false)?'价格':'Cost'}}: {{ formatWhole(tmp[layer].upgrades[data].cost) }} {{(tmp[layer].upgrades[data].currencyDisplayName ? tmp[layer].upgrades[data].currencyDisplayName : ((options.ch || modInfo.languageMod==false)?tmp[layer].resource:tmp[layer].resourceEN))}}
+				<span v-if= "tmp[layer].upgrades[data].title"><h3 v-html="tmp[layer].upgrades[data].title"></h3><br></span>
+				<span v-html="tmp[layer].upgrades[data].description"></span>
+				<span v-if="layers[layer].upgrades[data].effectDisplay"><br>{{text('systemComponent.upgrade.currently')}}: <span v-html="run((layers[layer].upgrades[data].effectDisplay, layers[layer].upgrades[data])"></span></span>
+				<br><br>{{text('systemComponent.upgrade.cost')}}: {{ formatWhole(tmp[layer].upgrades[data].cost) }} {{(tmp[layer].upgrades[data].currencyDisplayName ? tmp[layer].upgrades[data].currencyDisplayName : (tmp[layer].resource))}}
 			</span>	
 			</button>
 		`
@@ -207,8 +205,8 @@ function loadVue() {
 		props: ['layer', 'data'],
 		template: `
 		<td v-if="tmp[layer].milestones && tmp[layer].milestones[data]!== undefined && milestoneShown(layer, data) && tmp[layer].milestones[data].unlocked" v-bind:style="[tmp[layer].milestones[data].style]" v-bind:class="{milestone: !hasMilestone(layer, data), tooltipBox: true, milestoneDone: hasMilestone(layer, data)}">
-			<br><h3 v-if="(options.ch || modInfo.languageMod==false) && tmp[layer].milestones[data].requirementDescription" v-html="tmp[layer].milestones[data].requirementDescription"></h3><h3 v-if="tmp[layer].milestones[data].requirementDescription&&!(options.ch || modInfo.languageMod==false)" v-html="tmp[layer].milestones[data].requirementDescriptionEN"></h3><br>
-			<span v-if="(options.ch || modInfo.languageMod==false)" v-html="run(layers[layer].milestones[data].effectDescription, layers[layer].milestones[data])"></span><span v-if="!(options.ch || modInfo.languageMod==false)" v-html="run(layers[layer].milestones[data].effectDescriptionEN, layers[layer].milestones[data])"></span><br>
+			<br><h3 v-if="tmp[layer].milestones[data].requirementDescription" v-html="tmp[layer].milestones[data].requirementDescription"></h3><br>
+			<span v-html="run(layers[layer].milestones[data].effectDescription, layers[layer].milestones[data])"></span><br>
 			<tooltip v-if="tmp[layer].milestones[data].tooltip" :text="tmp[layer].milestones[data].tooltip"></tooltip>
 		<span v-if="(tmp[layer].milestones[data].toggles)&&(hasMilestone(layer, data))" v-for="toggle in tmp[layer].milestones[data].toggles"><toggle :layer= "layer" :data= "toggle" v-bind:style="tmp[layer].componentStyles.toggle"></toggle>&nbsp;</span></td></tr>
 		`
@@ -217,7 +215,7 @@ function loadVue() {
 	Vue.component('toggle', {
 		props: ['layer', 'data'],
 		template: `
-		<button class="smallUpg can" v-bind:style="{'background-color': tmp[data[0]].color}" v-on:click="toggleAuto(data)">{{player[data[0]][data[1]]?((options.ch || modInfo.languageMod==false)?"已开启":"ON"):((options.ch || modInfo.languageMod==false)?"已关闭":"OFF")}}</button>
+		<button class="smallUpg can" v-bind:style="{'background-color': tmp[data[0]].color}" v-on:click="toggleAuto(data)">{{player[data[0]][data[1]]?(text('systemComponent.toggle.on')):(text('systemComponent.toggle.off')}}</button>
 		`
 	})
 
@@ -236,7 +234,7 @@ function loadVue() {
 	Vue.component('main-display', {
 		props: ['layer', 'data'],
 		template: `
-		<div><span v-if="player[layer].points.lt('1e1000')">{{(options.ch || modInfo.languageMod==false)?"你有":"You have"}} </span><h2 v-bind:style="{'color': tmp[layer].color, 'text-shadow': '0px 0px 10px ' + tmp[layer].color}">{{data ? format(player[layer].points, data) : formatWhole(player[layer].points)}}</h2> {{(options.ch || modInfo.languageMod==false)?tmp[layer].resource:tmp[layer].resourceEN}}<span v-if="layers[layer].effectDescription">, <span v-html="run((options.ch || modInfo.languageMod==false)?layers[layer].effectDescription:layers[layer].effectDescriptionEN, layers[layer])"></span></span><br><br></div>
+		<div><span v-if="player[layer].points.lt('1e1000')">{{text('systemComponent.main-display.youHave')}} </span><h2 v-bind:style="{'color': tmp[layer].color, 'text-shadow': '0px 0px 10px ' + tmp[layer].color}">{{data ? format(player[layer].points, data) : formatWhole(player[layer].points)}}</h2> {{tmp[layer].resource}}<span v-if="layers[layer].effectDescription">, <span v-html="run(?layers[layer].effectDescription, layers[layer])"></span></span><br><br></div>
 		`
 	})
 
@@ -245,11 +243,11 @@ function loadVue() {
 		props: ['layer'],
 		template: `
 		<div style="margin-top: -13px">
-			<span v-if="tmp[layer].baseAmount"><br>{{(options.ch || modInfo.languageMod==false)?"你有":"You have"}} {{formatWhole(tmp[layer].baseAmount)}} {{(options.ch || modInfo.languageMod==false)?tmp[layer].baseResource:tmp[layer].baseResourceEN}}</span>
-			<span v-if="tmp[layer].passiveGeneration"><br>{{(options.ch || modInfo.languageMod==false)?"你每秒获得":"You are gaining "}} {{format(tmp[layer].resetGain.times(tmp[layer].passiveGeneration))}} {{(options.ch || modInfo.languageMod==false)?tmp[layer].resource:tmp[layer].resourceEN}}{{(options.ch || modInfo.languageMod==false)?"":" per second"}}</span>
+			<span v-if="tmp[layer].baseAmount"><br>{{text('systemComponent.resource-display.baseAmount')}} {{formatWhole(tmp[layer].baseAmount)}} {{tmp[layer].baseResource}}</span>
+			<span v-if="tmp[layer].passiveGeneration"><br>{{text('systemComponent.resource-display.passiveGeneration')}} {{format(tmp[layer].resetGain.times(tmp[layer].passiveGeneration))}} {{tmp[layer].resource}}{{text('systemComponent.resource-display.afterPassiveGeneration')}}</span>
 			<br><br>
-			<span v-if="tmp[layer].showBest">{{(options.ch || modInfo.languageMod==false)?"你最高拥有":"Your best resource this layer is "}} {{formatWhole(player[layer].best)}} {{(options.ch || modInfo.languageMod==false)?tmp[layer].resource:tmp[layer].resourceEN}}<br></span>
-			<span v-if="tmp[layer].showTotal">{{(options.ch || modInfo.languageMod==false)?"你总共拥有":"You have made a total of "}} {{formatWhole(player[layer].total)}} {{(options.ch || modInfo.languageMod==false)?tmp[layer].resource:tmp[layer].resourceEN}}<br></span>
+			<span v-if="tmp[layer].showBest">{{text('systemComponent.resource-display.showBest')}} {{formatWhole(player[layer].best)}} {{tmp[layer].resource}}<br></span>
+			<span v-if="tmp[layer].showTotal">{{(text('systemComponent.resource-display.showTotal')}} {{formatWhole(player[layer].total)}} {{tmp[layer].resource}}<br></span>
 		</div>
 		`
 	})
@@ -276,10 +274,10 @@ function loadVue() {
 			<button v-bind:class="{ buyable: true, tooltipBox: true, can: tmp[layer].buyables[data].canBuy, locked: !tmp[layer].buyables[data].canAfford, bought: player[layer].buyables[data].gte(tmp[layer].buyables[data].purchaseLimit)}"
 			v-bind:style="[tmp[layer].buyables[data].canBuy ? {'background-color': tmp[layer].color} : {}, size ? {'height': size, 'width': size} : {}, tmp[layer].componentStyles.buyable, tmp[layer].buyables[data].style]"
 			v-on:click="buyBuyable(layer, data)" @mousedown="start" @mouseleave="stop" @mouseup="stop" @touchstart="start" @touchend="stop" @touchcancel="stop">
-				<span v-if= "tmp[layer].buyables[data].title"><h2 v-html="(options.ch || modInfo.languageMod==false)?tmp[layer].buyables[data].title:tmp[layer].buyables[data].titleEN"></h2><br></span>
-				<span v-bind:style="{'white-space': 'pre-line'}" v-html="run((options.ch || modInfo.languageMod==false)?layers[layer].buyables[data].display:layers[layer].buyables[data].displayEN, layers[layer].buyables[data])"></span>
+				<span v-if= "tmp[layer].buyables[data].title"><h2 v-html="tmp[layer].buyables[data].title"></h2><br></span>
+				<span v-bind:style="{'white-space': 'pre-line'}" v-html="run(layers[layer].buyables[data].display, layers[layer].buyables[data])"></span>
 				<node-mark :layer='layer' :data='tmp[layer].buyables[data].marked'></node-mark>
-                <tooltip v-if="tmp[layer].buyables[data].tooltip" :text="(options.ch || modInfo.languageMod==false)?tmp[layer].buyables[data].tooltip:tmp[layer].buyables[data].tooltipEN"></tooltip>
+                <tooltip v-if="tmp[layer].buyables[data].tooltip" :text="tmp[layer].buyables[data].tooltip"></tooltip>
 			</button>
 			<br v-if="(tmp[layer].buyables[data].sellOne !== undefined && !(tmp[layer].buyables[data].canSellOne !== undefined && tmp[layer].buyables[data].canSellOne == false)) || (tmp[layer].buyables[data].sellAll && !(tmp[layer].buyables[data].canSellAll !== undefined && tmp[layer].buyables[data].canSellAll == false))">
 			<sell-one :layer="layer" :data="data" v-bind:style="tmp[layer].componentStyles['sell-one']" v-if="(tmp[layer].buyables[data].sellOne)&& !(tmp[layer].buyables[data].canSellOne !== undefined && tmp[layer].buyables[data].canSellOne == false)"></sell-one>
@@ -339,9 +337,9 @@ function loadVue() {
 			v-bind:style="[tmp[layer].clickables[data].canClick ? {'background-color': tmp[layer].color} : {}, tmp[layer].clickables[data].style]"
 			v-on:click="if(!interval) clickClickable(layer, data)" :id='"clickable-" + layer + "-" + data' @mousedown="start" @mouseleave="stop" @mouseup="stop" @touchstart="start" @touchend="stop" @touchcancel="stop">
 			<span v-if= "tmp[layer].clickables[data].title"><h2 v-html="tmp[layer].clickables[data].title"></h2><br></span>
-			<span v-bind:style="{'white-space': 'pre-line'}" v-html="run((options.ch || modInfo.languageMod==false)?layers[layer].clickables[data].display:layers[layer].clickables[data].displayEN, layers[layer].clickables[data])"></span>
+			<span v-bind:style="{'white-space': 'pre-line'}" v-html="run(layers[layer].clickables[data].display, layers[layer].clickables[data])"></span>
 			<node-mark :layer='layer' :data='tmp[layer].clickables[data].marked'></node-mark>
-			<tooltip v-if="tmp[layer].clickables[data].tooltip" :text="(options.ch || modInfo.languageMod==false)?tmp[layer].clickables[data].tooltip:tmp[layer].clickables[data].tooltipEN"></tooltip>
+			<tooltip v-if="tmp[layer].clickables[data].tooltip" :text="tmp[layer].clickables[data].tooltip"></tooltip>
 
 		</button>
 		`,
@@ -454,7 +452,7 @@ function loadVue() {
 		template: `
 		<div v-if="tmp[layer].bars && tmp[layer].bars[data].unlocked" v-bind:style="{'position': 'relative'}"><div v-bind:style="[tmp[layer].bars[data].style, style.dims, {'display': 'table'}]">
 			<div class = "overlayTextContainer barBorder" v-bind:style="[tmp[layer].bars[data].borderStyle, style.dims]">
-				<span class = "overlayText" v-bind:style="[tmp[layer].bars[data].style, tmp[layer].bars[data].textStyle]" v-html="run((options.ch || modInfo.languageMod==false)?layers[layer].bars[data].display : layers[layer].bars[data].displayEN, layers[layer].bars[data])"></span>
+				<span class = "overlayText" v-bind:style="[tmp[layer].bars[data].style, tmp[layer].bars[data].textStyle]" v-html="run(layers[layer].bars[data].display, layers[layer].bars[data])"></span>
 			</div>
 			<div class ="barBG barBorder" v-bind:style="[tmp[layer].bars[data].style, tmp[layer].bars[data].baseStyle, tmp[layer].bars[data].borderStyle,  style.dims]">
 				<div class ="fill" v-bind:style="[tmp[layer].bars[data].style, tmp[layer].bars[data].fillStyle, style.fillDims]"></div>
@@ -485,10 +483,10 @@ function loadVue() {
 		<div v-if="tmp[layer].achievements && tmp[layer].achievements[data]!== undefined && tmp[layer].achievements[data].unlocked" v-bind:class="{ [layer]: true, achievement: true, tooltipBox:true, locked: !hasAchievement(layer, data), bought: hasAchievement(layer, data)}"
 			v-bind:style="achievementStyle(layer, data)">
 			<tooltip :text="
-			(tmp[layer].achievements[data].tooltip == '') ? false : hasAchievement(layer, data) ? (tmp[layer].achievements[data].doneTooltip ? tmp[layer].achievements[data].doneTooltip : (tmp[layer].achievements[data].tooltip ? ((options.ch || modInfo.languageMod==false)?tmp[layer].achievements[data].tooltip:tmp[layer].achievements[data].tooltipEN) : ((options.ch || modInfo.languageMod==false)?'已完成!':'Completed!')))
-			: (tmp[layer].achievements[data].goalTooltip ? tmp[layer].achievements[data].goalTooltip : (tmp[layer].achievements[data].tooltip ? ((options.ch || modInfo.languageMod==false)?tmp[layer].achievements[data].tooltip:tmp[layer].achievements[data].tooltipEN) : ((options.ch || modInfo.languageMod==false)?'锁定':'Locked')))
+			(tmp[layer].achievements[data].tooltip == '') ? false : hasAchievement(layer, data) ? (tmp[layer].achievements[data].doneTooltip ? tmp[layer].achievements[data].doneTooltip : (tmp[layer].achievements[data].tooltip ? (tmp[layer].achievements[data].tooltip) : (text('systemComponent.achievement.doneTooltip'))))
+			: (tmp[layer].achievements[data].goalTooltip ? tmp[layer].achievements[data].goalTooltip : (tmp[layer].achievements[data].tooltip ? (tmp[layer].achievements[data].tooltip) : (text('systemComponent.achievement.locked')))
 		"></tooltip>
-			<span v-if= "tmp[layer].achievements[data].name"><br><h3 v-bind:style="tmp[layer].achievements[data].textStyle" v-html="(options.ch || modInfo.languageMod==false)?tmp[layer].achievements[data].name:tmp[layer].achievements[data].nameEN"></h3><br></span>
+			<span v-if= "tmp[layer].achievements[data].name"><br><h3 v-bind:style="tmp[layer].achievements[data].textStyle" v-html="tmp[layer].achievements[data].name"></h3><br></span>
 		</div>
 		`
 	})
@@ -501,7 +499,7 @@ function loadVue() {
 		template: `<div>
 		<span class="upgRow" v-for="(row, r) in data" style="margin-top: -4px;"><table class='untable'>
 			<span v-for="(node, id) in row" style = "{width: 0px}">
-				<tree-node :layer='node' :prev='layer' :abb='(options.ch || modInfo.languageMod==false)?tmp[node].symbol:tmp[node].symbolEN' :key="key + '-' + r + '-' + id"></tree-node>
+				<tree-node :layer='node' :prev='layer' :abb='tmp[node].symbol' :key="key + '-' + r + '-' + id"></tree-node>
 			</span>
 		</span></div>
 		`

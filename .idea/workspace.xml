@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a42c57a-07b7-409d-b5f9-62e543c357dd" name="Changes" comment="">
+    <list default="true" id="0a42c57a-07b7-409d-b5f9-62e543c357dd" name="Changes" comment="Changes">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/components.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/components.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/lag.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/lag.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/langs/en_US.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/langs/en_US.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/langs/zh_CN.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/langs/zh_CN.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/mod.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/mod.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/setting.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/setting.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/utils/options.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/utils/options.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/technical/preLoader.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/technical/preLoader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/technical/systemComponents.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/technical/systemComponents.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +23,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: -1
+}</component>
   <component name="ProjectId" id="2ShQRCVkfoevltUrg0jaNLZiEQk" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -27,9 +41,23 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RunManager">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/TMTable-i18n/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript 调试.index.html" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -40,6 +68,10 @@
       <updated>1689596328084</updated>
       <workItem from="1689596336971" duration="122000" />
       <workItem from="1689596493113" duration="266000" />
+      <workItem from="1690885556090" duration="232000" />
+      <workItem from="1690886098481" duration="2125000" />
+      <workItem from="1690888543493" duration="4437000" />
+      <workItem from="1690893016269" duration="722000" />
     </task>
     <servers />
   </component>

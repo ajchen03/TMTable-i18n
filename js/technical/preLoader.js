@@ -59,7 +59,7 @@ let scripts = [
     "js/utils/NumberFormating.js",
     "js/utils/options.js",
     "js/utils/save.js",
-    "js/utils/themes.js"
+    "js/utils/themes.js",
 ]
 
 loadStaticSource(scripts).then(() => load())
