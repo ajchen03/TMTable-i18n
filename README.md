@@ -4,7 +4,6 @@ by ajchen
 # ALRIGHT CHECK THIS OUT
 You need to open this AS A SERVER to run! (I know, it's weird, but it's how it works)<br>
 For VSCode, you can use the five Server extension to do this.<br>
-For other IDEs... welp, you're on your own. GOOGLE HELP
 
 # How to use this
 Mostly just as you do a normal tree, but replace every strings with ```text()```.<br>
